@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+version="$(hytale-downloader -print-version)"
+
+zipfile="${version}.zip"
+
+for file in ./*; do
+  if [[ "$file" =~ ^\.\/[0-9]+\.[0-9][0-9]\.[0-9][0-9]-.+\.zip$ ]]; then
+    if [[ "$file" != "./$zipfile" ]]; then
+      rm "$file"
+    fi
+  fi
+done
+
+if [[ -e "$zipfile" ]]; then
+  echo "Latest version zip already downloaded"
+  exit 0
+fi
+
+hytale-downloader
+
+unzip -u "$zipfile"
+
+cp -r Server/* .

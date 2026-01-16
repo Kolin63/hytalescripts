@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+java -Xms8G -Xmx14G -jar HytaleServer.jar --assets Assets.zip
