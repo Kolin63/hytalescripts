@@ -14,11 +14,12 @@ done
 
 if [[ -e "$zipfile" ]]; then
   echo "Latest version zip already downloaded"
-  exit 0
+else
+  hytale-downloader
 fi
 
-hytale-downloader
-
-unzip -u "$zipfile"
+unzip -o "$zipfile"
 
 cp -r Server/* .
+
+rm -r Server
